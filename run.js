@@ -22,7 +22,7 @@ var file = process.argv[2];
 
 console.warn("Using session file: " + file + " with " + workerCount + " workers.");
 
-parseSession(file, ['webmaker.org', 'thimble.webmaker.org'], /(^text)|(javascript)/, function(err, requests){
+parseSession(file, ['webmaker.org', 'thimble.webmaker.org', 'maker.mozillapopcorn.org'], /(^text)|(javascript)/, function(err, requests){
   if (err){
     console.log(err);
     return;
