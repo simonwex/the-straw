@@ -1,0 +1,14 @@
+{
+  "author": " <swex@mozilla.com>",
+  "name": "webmaker_load_test",
+  "description": "Load Balance Tester for webmaker.org",
+  "version": "0.0.0",
+  "dependencies": {
+    "lazy": "1.0.x"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
