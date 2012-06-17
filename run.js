@@ -34,9 +34,9 @@ parseSession(file, ['webmaker.org', 'thimble.webmaker.org'], /(^text)|(javascrip
     workers++;
     var worker = new Worker(requests, getRandomUa(), {repeat: true});
 
-    worker.on('done', function(){
-      console.warn("Worker finished session sequence.");
-    });
+    // worker.on('done', function(){
+    //   console.warn("Worker finished session sequence.");
+    // });
 
     worker.go();
   }
