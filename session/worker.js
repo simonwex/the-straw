@@ -52,7 +52,6 @@ function Worker(requests, ua, options){
     if (!options.delay || options.delay == 0)
       options.delay = 1;
 
-    options.delay = 1;
 
     
     // console.log("# next delay: " + options.delay);
