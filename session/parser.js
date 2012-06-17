@@ -62,7 +62,8 @@ module.exports = function(filename, allowedDomains, allowedContentTypeRegex, cal
     .map(String)
     .on('pipe', function(){
       // Get the last one.
-      if (request.responseHeaders['content-type'].match(allowedContentTypeRegex)){
+
+      if (!('content-type' in request.responseHeaders) || request.responseHeaders['content-type'].match(allowedContentTypeRegex)){
         if (~allowedDomains.indexOf(request.host)){
           requests.push(request);
         }
