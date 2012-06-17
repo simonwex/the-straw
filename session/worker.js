@@ -52,7 +52,6 @@ function Worker(requests, ua, options){
     if (!options.delay || options.delay == 0)
       options.delay = 1;
 
-
     
     // console.log("# next delay: " + options.delay);
     self.timeout = setTimeout(
@@ -72,23 +71,26 @@ function Worker(requests, ua, options){
           port: options.port,
           headers: options.headers,
           method: options.method
-        }, function(response){
-            console.log(JSON.stringify({
-              'url': options.url, 
-              'responseTime': Date.now() - createdAt,
-              'date': Date.now().toString(),
-              'createdAt': new Date(createdAt).toString(),
-              'now': new Date().toString(),
-              'sinceBeginningOfTime': Date.now() - self.beginningOfTime
-            }));
+        },
+        function(response){
+          console.log(JSON.stringify({
+            'url': options.url,
+            'responseTime': Date.now() - createdAt,
+            'date': Date.now().toString(),
+            'createdAt': new Date(createdAt).toString(),
+            'now': new Date().toString(),
+            'sinceBeginningOfTime': Date.now() - self.beginningOfTime
+          }));
 
-            // console.log('STATUS: ' + response.statusCode);
-            // TODO: Save cookies
-            // TODO: validate expected statusCode.
-            // console.log('HEADERS: ' + JSON.stringify(response.headers));
+          // console.log('STATUS: ' + response.statusCode);
+          // TODO: Save cookies
+          // TODO: validate expected statusCode.
+          // console.log('HEADERS: ' + JSON.stringify(response.headers));
+          self.next();
         });
         request.on('error', function(e){
           console.log('Error response from URL: ' + options.url);
+          self.next();
         });
 
         if (options.data){
@@ -96,7 +98,7 @@ function Worker(requests, ua, options){
           // request.write("\n");
         }
         request.end();
-        self.next();
+        
       },
       options.delay
     );
